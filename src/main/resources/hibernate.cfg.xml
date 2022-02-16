@@ -16,10 +16,12 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <mapping class="ru.job4j.model.Brand"/>
-        <mapping class="ru.job4j.model.Model"/>
+<!--        <mapping class="ru.job4j.model.Brand"/>-->
+<!--        <mapping class="ru.job4j.model.Model"/>-->
         <mapping class="ru.job4j.manytomany.Book"/>
         <mapping class="ru.job4j.manytomany.Author"/>
+        <mapping class="ru.job4j.lazy.Model"/>
+        <mapping class="ru.job4j.lazy.Brand"/>
 
     </session-factory>
 </hibernate-configuration>
