@@ -1,9 +1,6 @@
 package ru.job4j.hql;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -15,15 +12,18 @@ public class Candidate {
     private String name;
     private int experience;
     private double salary;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private VacancyDb vacancyDb;
 
     public Candidate() {
     }
 
-    public static Candidate of(String name, int experience, double salary) {
+    public static Candidate of(String name, int experience, double salary, VacancyDb vacancyDb) {
         Candidate candidate = new Candidate();
         candidate.name = name;
         candidate.experience = experience;
         candidate.salary = salary;
+        candidate.vacancyDb = vacancyDb;
         return candidate;
     }
 
@@ -59,6 +59,14 @@ public class Candidate {
         this.salary = salary;
     }
 
+    public VacancyDb getVacancyDb() {
+        return vacancyDb;
+    }
+
+    public void setVacancyDb(VacancyDb vacancyDb) {
+        this.vacancyDb = vacancyDb;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -83,6 +91,7 @@ public class Candidate {
                 + ", name='" + name + '\''
                 + ", experience=" + experience
                 + ", salary=" + salary
+                + ", vacancyDb=" + vacancyDb
                 + '}';
     }
 }
